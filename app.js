@@ -24,7 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://"+ process.env.USER_ID +":"+ process.env.USER_PW +"@cluster0.8suebra.mongodb.net/userDB", {useNewUrlParser: true});
 
 const userSchema = new mongoose.Schema({
   email: String,
@@ -54,7 +54,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/secrets"
+    callbackURL: "https://a-whisper-app.onrender.com/auth/google/secrets"
     // passReqToCallback: true
   },
   function(accessToken, refreshToken, profile, cb) {
